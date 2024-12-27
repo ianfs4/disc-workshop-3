@@ -39,6 +39,13 @@ function App() {
   const [mode, setMode] = useState('light');
   const [tasks, setTasks] = useState(TASKS);
 
+  const handleDone = (index) => {
+    console.log("test")
+    const newTasks = [...tasks];
+    newTasks[index].done = !newTasks[index].done;
+    setTasks(newTasks);
+  }
+
   const switchMode = () => {
     if (mode === 'light') {
       setMode('dark');
@@ -62,7 +69,7 @@ function App() {
       <ul>
         {TASKS.map((task, index) => {
           return (
-            <Item title={task.title} desc={task.desc} deadline={task.deadline} done={task.done} />
+            <Item title={task.title} desc={task.desc} deadline={task.deadline} done={task.done} handleDone={() => handleDone(index)} />
           )
         })}
       </ul>
